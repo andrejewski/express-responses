@@ -47,7 +47,7 @@ If the request does not accept HTML or `view` is not set, Responses will return 
 
 If the `emit` option is set with a function accepting an Error, any errors sent with Responses will also be passed to the function. This is useful for debugging and logging. 
 
-Only errors with status codes 500 and above will be passed to emit when `process.env.NODE_ENV = 'production'` as 5xx series errors are the fault of the server. In development, any error will be emitted to the `emit` function.
+Only errors with status codes 500 and above will be passed to `emit` when `process.env.NODE_ENV = 'production'` as 5xx series errors are the fault of the server. In development, any error will be emitted to the `emit` function.
 
 ## Available methods
 
@@ -55,22 +55,23 @@ The Responses middleware attaches all of the following methods:
 
 ```js
 // 4xx: client error
-res.badRequest			// 400, bad request
-res.forbidden				// 403, forbidden
-res.notFound				// 404, not found
-res.undefined				// 405, method not allowed
+res.badRequest      // 400, bad request
+res.forbidden       // 403, forbidden
+res.notFound        // 404, not found
+res.undefined       // 405, method not allowed
 
 // 5xx: server error
-res.internalError		// 500, internal server error
-res.notImplemented	// 501, not implemented
+res.internalError   // 500, internal server error
+res.notImplemented  // 501, not implemented
 ```
 
 ## Contributing
 
-Obviously, there are a lot more HTTP error codes. I have only implemented the ones I have been using daily. If you can justify the use case for new methods, open an issue or just pull request  (new methods are really just one liners).
+Obviously, there are a lot more HTTP error codes. I have only implemented the ones I have been using daily. If you can justify the use case for new methods, open an issue or pull request (new methods are really just one liners).
 
 We can always have more tests: if you find a bug, create an issue or be **fabulous** and fix the problem and write the tests up yourself in a coherent pull request.
 
 Run tests with the `npm test` command.
 
 Follow me on [Twitter](https://twitter.com/ndrejewski) for updates or just for the lolz and please check out my other [repositories](https://github.com/andrejewski) if I have earned it. I thank you for reading.
+
