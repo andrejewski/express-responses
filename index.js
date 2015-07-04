@@ -42,7 +42,7 @@ module.exports = function(options) {
     res.badRequest = handle(400, 'bad request');
     res.forbidden = handle(403, 'forbidden');
     res.notFound = handle(404, 'not found');
-    res.undefined = handle(405, 'method not allowed');
+    res.notAllowed = handle(405, 'method not allowed');
 
     // 5xx: server error
     res.internalError = handle(500, 'internal server error');

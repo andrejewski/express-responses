@@ -58,7 +58,7 @@ The Responses middleware attaches all of the following methods:
 res.badRequest      // 400, bad request
 res.forbidden       // 403, forbidden
 res.notFound        // 404, not found
-res.undefined       // 405, method not allowed
+res.notAllowed      // 405, method not allowed
 
 // 5xx: server error
 res.internalError   // 500, internal server error
