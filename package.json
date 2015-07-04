@@ -1,0 +1,28 @@
+{
+  "name": "express-responses",
+  "version": "1.0.0",
+  "description": "HTTP error responses for Express",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrejewski/express-responses.git"
+  },
+  "keywords": [
+    "http",
+    "express",
+    "error",
+    "response"
+  ],
+  "author": "Chris Andrejewski <christopher.andrejewski@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andrejewski/express-responses/issues"
+  },
+  "homepage": "https://github.com/andrejewski/express-responses#readme",
+  "devDependencies": {
+    "mocha": "^2.2.5"
+  }
+}
