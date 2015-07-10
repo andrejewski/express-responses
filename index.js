@@ -40,6 +40,8 @@ module.exports = function(options) {
 
     // 4xx: client error
     res.badRequest = handle(400, 'bad request');
+    res.unauthorized = handle(401, 'unauthorized');
+    res.paymentRequired = handle(402, 'payment required');
     res.forbidden = handle(403, 'forbidden');
     res.notFound = handle(404, 'not found');
     res.notAllowed = handle(405, 'method not allowed');
@@ -47,6 +49,8 @@ module.exports = function(options) {
     // 5xx: server error
     res.internalError = handle(500, 'internal server error');
     res.notImplemented = handle(501, 'not implemented');
+    res.badGateway = handle(502, 'bad gateway');
+    res.serviceUnavailable = handle(503, 'service unavailable');
 
     // If you want more: open issue/pull request
 

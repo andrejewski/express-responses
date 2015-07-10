@@ -27,6 +27,8 @@ app.get('/users/:user', function(req, res, next) {
 });
 ```
 
+Not every single HTTP code is attached to `res`, see the [source](https://github.com/andrejewski/express-responses/blob/master/index.js) for which methods are included.
+
 ## Options
 
 ### view String
@@ -48,22 +50,6 @@ If the request does not accept HTML or `view` is not set, Responses will return 
 If the `emit` option is set with a function accepting an Error, any errors sent with Responses will also be passed to the function. This is useful for debugging and logging. 
 
 Only errors with status codes 500 and above will be passed to `emit` when `process.env.NODE_ENV = 'production'` as 5xx series errors are the fault of the server. In development, any error will be emitted to the `emit` function.
-
-## Available methods
-
-The Responses middleware attaches all of the following methods:
-
-```js
-// 4xx: client error
-res.badRequest      // 400, bad request
-res.forbidden       // 403, forbidden
-res.notFound        // 404, not found
-res.notAllowed      // 405, method not allowed
-
-// 5xx: server error
-res.internalError   // 500, internal server error
-res.notImplemented  // 501, not implemented
-```
 
 ## Contributing
 
