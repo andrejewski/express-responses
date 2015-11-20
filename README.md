@@ -18,13 +18,21 @@ app.use(responses({
 app.get('/users/:user', function(req, res, next) {
 	var user = db.getUser(req.params.user);
 	if(!user) {
-		// returns a 404 along with the error
+		// returns a 404 along with the error message
 		res.notFound('User '+req.params.user+' not found.');
 	} else {
 		res.locals.user = user;
 		res.render('user/show');
 	}
 });
+
+app.get('/feature', function(req, res, next) {
+  res.notImplemented({
+    message: "This feature has not been implemented.",
+    documentationUrl: "http://api.example.com/docs/..."
+  });
+});
+
 ```
 
 Not every single HTTP code is attached to `res`, see the [source](https://github.com/andrejewski/express-responses/blob/master/index.js) for which methods are included.
@@ -39,7 +47,7 @@ If the `view` option is set with a template name, Responses will respond to a re
 {
 	"code": 404,
 	"status": "not found",
-	"error": "User chris not found."
+	"message": "User chris not found."
 }
 ```
 
@@ -47,7 +55,7 @@ If the request does not accept HTML or `view` is not set, Responses will return 
 
 ### emit Function
 
-If the `emit` option is set with a function accepting an Error, any errors sent with Responses will also be passed to the function. This is useful for debugging and logging. 
+If the `emit` option is set with a function accepting an Error, any errors sent with Responses will also be passed to the function. This is useful for debugging and logging.
 
 Only errors with status codes 500 and above will be passed to `emit` when `process.env.NODE_ENV = 'production'` as 5xx series errors are the fault of the server. In development, any error will be emitted to the `emit` function.
 

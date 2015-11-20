@@ -1,7 +1,7 @@
 
 function camel(words) {
   return words.split(' ').map(function(x) {
-    return x.charAt(0) + x.slice(1);
+    return x.charAt(0).toUpperCase() + x.slice(1);
   }).join('');
 }
 
@@ -13,19 +13,26 @@ module.exports = function(options) {
 
   function responses(req, res, next) {
 
-    function handle(code, status) {
-      return function(error) {
-        var data = {
-          code: code,
-          status: status,
-          error: error
-        };
+    function respond(shared) {
+      return function _respond(unique) {
+        unique = unique || {};
+        if(typeof unique === 'string') {
+          unique = {message: unique};
+        }
+
+        var data = Object.assign({}, shared, unique);
+        var code = data.code || 500;
+        var status = data.status || 'Error';
 
         if(options.emit && (dev || code >= 500)) {
-          var err = new Error(error);
-          err.code = code;
-          err.name = camel("Http " + status);
-          options.emit(err);
+          if(!(unique instanceof Error)) {
+            var error = new Error(data);
+            error.code = code;
+            error.name = camel("Http " + status);
+            options.emit(error);
+          } else {
+            options.emit(data);
+          }
         }
 
         res.status(code);
@@ -37,6 +44,15 @@ module.exports = function(options) {
         }
       }
     }
+
+    function handle(code, status) {
+      return respond({
+        code: code,
+        status: status,
+      });
+    }
+
+    res.httpRespond = respond;
 
     // 4xx: client error
     res.badRequest = handle(400, 'bad request');

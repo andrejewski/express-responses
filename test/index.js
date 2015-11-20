@@ -83,7 +83,7 @@ describe('express-responses', function() {
       assert.equal(typeof data.json, 'object');
       assert.equal(data.json.code, 404);
       assert.equal(data.json.status, 'not found');
-      assert.equal(data.json.error, 'error message');
+      assert.equal(data.json.message, 'error message');
 
       assert.equal(data.jsonCalls, 1);
       assert.equal(data.renderCalls, 0);
@@ -111,7 +111,7 @@ describe('express-responses', function() {
         assert.equal(typeof data.locals.http, 'object');
         assert.equal(data.locals.http.code, 404);
         assert.equal(data.locals.http.status, 'not found');
-        assert.equal(data.locals.http.error, 'error message');
+        assert.equal(data.locals.http.message, 'error message');
 
         assert.equal(data.jsonCalls, 0);
         assert.equal(data.renderCalls, 1);
